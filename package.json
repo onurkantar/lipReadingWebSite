@@ -41,6 +41,7 @@
     "popper.js": "1.14.4",
     "rxjs": "6.5.4",
     "rxjs-compat": "6.5.4",
+    "typescript": "^2.3.4",
     "zone.js": "0.10.2"
   },
   "devDependencies": {
@@ -60,8 +61,7 @@
     "karma-jasmine-html-reporter": "1.5.2",
     "protractor": "5.4.3",
     "ts-node": "3.0.4",
-    "tslint": "6.1.0",
-    "typescript": "^2.3.4"
+    "tslint": "6.1.0"
   },
   "engines": {
     "node": "6.11.0",
