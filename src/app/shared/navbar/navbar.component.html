@@ -8,6 +8,7 @@
                 <span class="navbar-toggler-bar"></span>
             </button>
         </div>
+        
         <div class="navbar-collapse" id="navbarToggler">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item" *ngIf="!isDocumentation()">
@@ -19,8 +20,14 @@
                 <li class="nav-item" *ngIf="!isDocumentation()">
                     <a href="https://github.com/onurkantar/LipReadinginTurkish/blob/master/readme.md" class="nav-link" target="_blank"><i class="nc-icon nc-book-bookmark"></i> Documentation</a>
                 </li>
-                <li class="nav-item" *ngIf="isHome()">
-                    <a href="https://www.creative-tim.com/product/paper-kit-2-pro-angular?ref=pk2-angular-free-local" target="_blank" class="btn btn-danger btn-round">Upload A Video</a>
+
+                <li class="nav-item" *ngIf="isHome()">                
+   
+                    <form action="/api/upload" method="post" enctype="multipart/form-data">
+                        <input  (change)="fileChange($event)"  type="file"  accept="video/*" class="btn btn-danger btn-round"  id="inputGroupFile01"  aria-describedby="inputGroupFileAddon01">
+                        <button class="btn btn-danger btn-round" (click)="upload()"  id="btnUpload"> Upload A Video </button> 
+                    </form>
+                   
                 </li>
                 <li class="nav-item" *ngIf="!isHome()">
                     <a [routerLink]="['/home']" *ngIf="!isDocumentation()" class="nav-link"><i class="nc-icon nc-layout-11"></i>Components</a>
