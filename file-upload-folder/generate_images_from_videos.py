@@ -55,15 +55,17 @@ def main():
                     clahe_image = clahe.apply(gray)
 
                     detections = detector(clahe_image, 1) #Detect the faces in the image
+                    try:
+                        for k,d in enumerate(detections): #For each detected face
+                            shape = predictor(clahe_image, d) #Get coordinates
 
-                    for k,d in enumerate(detections): #For each detected face
-                        shape = predictor(clahe_image, d) #Get coordinates
-
-                    x = []
-                    y = []
-                    for i in range(50,68):
-                        x.append(shape.part(i).x)
-                        y.append(shape.part(i).y)
+                        x = []
+                        y = []
+                        for i in range(50,68):
+                            x.append(shape.part(i).x)
+                            y.append(shape.part(i).y)
+                    except Exception:
+                        return None
 
                     img = Image.fromarray(frame, 'RGB')
                     crop = img.crop((min(x)-20,min(y)-20,max(x)+20,max(y)+20))
