@@ -84,7 +84,7 @@ export class NavbarComponent implements OnInit {
         for (var i = 0; i < this.uploadedFiles.length; i++) {
             formData.append("uploads[]", this.uploadedFiles[i], this.uploadedFiles[i].name);
         }
-        this.http.post('/api/upload', formData)
+        this.http.post('http://localhost:3000/api/upload', formData)
             .subscribe((response) => {
                 console.log('response received is ', response);
             })

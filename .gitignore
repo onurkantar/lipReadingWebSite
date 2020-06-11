@@ -8,7 +8,7 @@
 # dependencies
 /node_modules
 /file-upload-folder/node_modules
-/file-upload-folder/uploads
+/file-upload-folder/uploads/*
 
 package-lock.json
 
