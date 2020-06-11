@@ -1,6 +1,8 @@
 const express = require('express')
 const path = require('path')
+var cors = require('cors')
 const app = express()
+app.use(cors())
 const {spawn} = require('child_process');
 const port = 3000
 const multipart = require('connect-multiparty');
@@ -25,10 +27,9 @@ app.post('/api/upload', multipartMiddleware, (req, res) => {
        console.log(`error:${data}`);
     });
     subprocess.stderr.on('close', () => {
-       console.log("Closed");
-    });
-    res.json({
-        'message': 'File uploaded succesfully.'
+        res.json({
+            Success: true
+        });
     });
 });
 

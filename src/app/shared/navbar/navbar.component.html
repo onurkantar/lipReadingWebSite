@@ -25,7 +25,9 @@
    
                     <form action="/api/upload" method="post" enctype="multipart/form-data">
                         <input  (change)="fileChange($event)"  type="file"  accept="video/*" class="btn btn-danger btn-round"  id="inputGroupFile01"  aria-describedby="inputGroupFileAddon01">
-                        <button class="btn btn-danger btn-round" (click)="upload()"  id="btnUpload"> Upload A Video </button> 
+                        <button class="btn btn-danger btn-round" *ngIf="upload_status == 0 || upload_status == 2" [disabled]="upload_status == 2" (click)="upload()"  id="btnUpload"> Upload A Video </button> 
+                        <button class="btn btn-danger btn-round" *ngIf="upload_status == 1" [disabled]="true" (click)="upload()"  id="btnUpload"> Uploading </button> 
+
                     </form>
                    
                 </li>
@@ -36,6 +38,12 @@
                 <li class="nav-item" *ngIf="isDocumentation()">
                     <a href="https://github.com/creativetimofficial/paper-kit-2-angular/issues?ref=pk2-free-local" target="_blank" class="nav-link">Have an issue</a>
                 </li>
+
+                <div role="alert"  *ngIf="showMsg" >
+                    <p class="alert alert-success box-msg" align="center" >
+                        <strong [ngClass] ="FadeOutMessage()" font-size:60px >Upload Success!</strong>
+                    </p>
+                </div>
             </ul>
         </div>
     </div>

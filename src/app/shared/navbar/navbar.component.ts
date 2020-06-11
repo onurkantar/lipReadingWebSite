@@ -11,6 +11,8 @@ import { HttpClient } from '@angular/common/http';
 export class NavbarComponent implements OnInit {
     private toggleButton: any;
     private sidebarVisible: boolean;
+    private upload_status = 2;
+    showMsg: boolean = false;
     uploadedFiles: Array < File > ;
 
     constructor(public location: Location, private element : ElementRef,private http: HttpClient) {
@@ -77,15 +79,25 @@ export class NavbarComponent implements OnInit {
 
     fileChange(element) {
         this.uploadedFiles = element.target.files;
+        this.upload_status = 0;
+    }
+
+    FadeOutMessage() {
+        setTimeout( () => {
+              this.showMsg = false;
+            }, 3000);
     }
 
     upload() {
+        this.upload_status = 1;
         let formData = new FormData();
         for (var i = 0; i < this.uploadedFiles.length; i++) {
             formData.append("uploads[]", this.uploadedFiles[i], this.uploadedFiles[i].name);
         }
         this.http.post('http://localhost:3000/api/upload', formData)
             .subscribe((response) => {
+                this.upload_status = 0;
+                this.showMsg= true;
                 console.log('response received is ', response);
             })
     }

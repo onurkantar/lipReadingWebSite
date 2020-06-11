@@ -9,6 +9,7 @@
 /node_modules
 /file-upload-folder/node_modules
 /file-upload-folder/uploads/*
+/file-upload-folder/downloads/*
 
 package-lock.json
 
